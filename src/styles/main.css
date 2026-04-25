@@ -1,0 +1,9 @@
+body {
+  padding-top: 70px;
+}
+
+.styled-text::first-letter {
+  font-size: 3rem;
+  color: blue;
+  font-weight: bold;
+}

@@ -1,0 +1,68 @@
+.home-hero {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at top left, rgba(32, 128, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, #07122c 0%, #101f45 48%, #0b1631 100%);
+  color: #f8fbff;
+  padding: 100px 0;
+}
+
+.home-hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.02;
+}
+
+.home-hero p {
+  font-size: 1.05rem;
+  color: rgba(248, 251, 255, 0.82);
+}
+
+.home-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+}
+
+.feature-card {
+  border-radius: 1.2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 45px rgba(15, 44, 85, 0.16);
+}
+
+.security-section {
+  background: #f8fbff;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+
+.security-box {
+  background: white;
+}
+
+.security-image {
+  min-height: 320px;
+  background: linear-gradient(135deg, rgba(12, 67, 172, 0.95), rgba(68, 146, 255, 0.65));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 991px) {
+  .home-hero {
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .home-card {
+    margin-top: 1.5rem;
+  }
+}
