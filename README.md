@@ -1,16 +1,78 @@
-# React + Vite
+# 💰 FinSmart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web de finanzas personales para gestión de ahorro, gastos e inversión.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Tecnologías
 
-## React Compiler
+* React (Vite)
+* React Router
+* React Bootstrap
+* Recharts
+* Context API (autenticación)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📦 Instalación
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/finSmart.git
+cd finSmart
+```
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+---
+
+## ▶️ Ejecución
+
+```bash
+npm run dev
+```
+
+Abrir en:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🔐 Acceso de prueba
+
+```
+Usuario: admin
+Password: 1234
+```
+
+---
+
+## 📊 Funcionalidades
+
+* Autenticación con rutas privadas
+* Dashboard financiero
+* Gráfica de distribución (ahorro, gastos, inversión)
+* Registro de acciones básicas
+* Logout funcional
+
+---
+
+## 📁 Notas importantes
+
+* `node_modules` no está incluido
+* Es obligatorio ejecutar `npm install` antes de iniciar
+
+---
+
+## 🚧 Próximas mejoras
+
+* Backend con JWT
+* Persistencia en base de datos
+* Recomendaciones con IA
