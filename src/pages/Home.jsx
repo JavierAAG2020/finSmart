@@ -1,6 +1,7 @@
 import CustomNavbar from "../components/layout/Navbar"
 import Footer from "../components/layout/Footer"
 import "../styles/Home.css"
+import "../styles/main.css"
 
 function Home() {
   return (
@@ -55,7 +56,7 @@ function Home() {
           <div className="col-lg-4">
             <div className="card feature-card h-100 border-0 shadow-sm">
               <div className="card-body">
-                <h3 className="h5">Protección avanzada</h3>
+                <h3 className="h5 styled-text">Protección avanzada</h3>
                 <p className="text-muted mb-0">
                   Tus transacciones y datos están protegidos con protocolos modernos y monitoreo continuo.
                 </p>
@@ -66,7 +67,7 @@ function Home() {
           <div className="col-lg-4">
             <div className="card feature-card h-100 border-0 shadow-sm">
               <div className="card-body">
-                <h3 className="h5">Informe claro</h3>
+                <h3 className="h5 styled-text">Informe claro</h3>
                 <p className="text-muted mb-0">
                   Visualiza tus ingresos, gastos y ahorros de forma simple para tomar decisiones seguras.
                 </p>
@@ -77,7 +78,7 @@ function Home() {
           <div className="col-lg-4">
             <div className="card feature-card h-100 border-0 shadow-sm">
               <div className="card-body">
-                <h3 className="h5">Soporte confiable</h3>
+                <h3 className="h5 styled-text">Soporte confiable</h3>
                 <p className="text-muted mb-0">
                   Estamos disponibles para ayudarte a entender tu panorama financiero y a optimizar tus resultados.
                 </p>
@@ -104,6 +105,32 @@ function Home() {
           </div>
           <div className="col-lg-6">
             <div className="security-image rounded-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-5">
+        <h2 className="text-center mb-4">Importancia y tips para gestionar tu dinero</h2>
+
+        <div className="row gy-4">
+          <div className="col-lg-6">
+            <div className="ratio ratio-16x9">
+              <iframe
+                src="https://www.youtube.com/embed/4j2emMn7UaI"
+                title="Cómo gestionar tus gastos personales"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div className="col-lg-6">
+            <div className="ratio ratio-16x9">
+              <iframe
+                src="https://www.youtube.com/embed/HQzoZfc3GwQ"
+                title="Cómo administrar tu dinero inteligentemente"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
