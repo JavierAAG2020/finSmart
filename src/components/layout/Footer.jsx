@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="bg-dark text-white text-center p-4">
+    <footer className="bg-dark text-white text-center p-4 mt-auto" style={{ marginBottom: 0 }}>
       <p>Contacto: equipo@finanzas.com</p>
 
       <div>
