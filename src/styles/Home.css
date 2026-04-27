@@ -50,6 +50,15 @@
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
+
+.modal.fade .modal-dialog {
+  transition: transform 0.5s ease-out;
+}
+
+.modal.fade {
+  transition: opacity 0.5s ease-out;
+}
+
 @media (max-width: 991px) {
   .home-hero {
     padding-top: 80px;

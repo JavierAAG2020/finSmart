@@ -10,11 +10,12 @@ function LoginModal({ show, handleClose }) {
   const { isAuth, login } = useContext(AuthContext)
   const navigate = useNavigate()
 
-  // 🔥 Si ya está autenticado → redirigir automáticamente
   useEffect(() => {
     if (isAuth) {
       handleClose()
-      navigate("/dashboard")
+      setTimeout(() => {
+        navigate("/dashboard")
+      }, 300) // coincide con duración del fade
     }
   }, [isAuth])
 

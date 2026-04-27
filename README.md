@@ -73,6 +73,5 @@ Password: 1234
 
 ## 🚧 Próximas mejoras
 
-* Backend con JWT
 * Persistencia en base de datos
 * Recomendaciones con IA
