@@ -27,6 +27,7 @@ Instalar dependencias:
 
 ```bash
 npm install
+npm install react-icons
 ```
 
 ---
@@ -75,3 +76,4 @@ Password: 1234
 
 * Persistencia en base de datos
 * Recomendaciones con IA
+* Carrusel y acordeon
