@@ -6,7 +6,7 @@ const COLORS = ["#0d6efd", "#dc3545", "#198754"]
 function ExpensePieChart({ dineroTotal, gastos, inversiones }) {
 
   const data = [
-    { name: "Dinero Total", value: dineroTotal },
+    { name: "Monto Restante", value: dineroTotal },
     { name: "Gastos", value: gastos },
     { name: "Inversiones", value: inversiones },
   ]
