@@ -10,7 +10,7 @@ import javierFoto from "../assets/integrantes/javier.png"
 import davidFoto from  "../assets/integrantes/david.png"
 import winyiFoto from "../assets/integrantes/winyi.png"
 import Footer from '../components/layout/Footer'
-// Textos repetidos
+
 const TEXTO_FLIP = "Haz clic para ver información personal"
 const TEXTO_BACK = "Haz clic para volver"
 const integrantes = [
