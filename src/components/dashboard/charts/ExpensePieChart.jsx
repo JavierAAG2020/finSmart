@@ -1,15 +1,16 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import { Card } from "react-bootstrap"
 
-const data = [
-  { name: "Ahorro", value: 1200 },
-  { name: "Gastos", value: 800 },
-  { name: "Inversiones", value: 500 },
-]
-
 const COLORS = ["#0d6efd", "#dc3545", "#198754"]
 
-function ExpensePieChart() {
+function ExpensePieChart({ dineroTotal, gastos, inversiones }) {
+
+  const data = [
+    { name: "Dinero Total", value: dineroTotal },
+    { name: "Gastos", value: gastos },
+    { name: "Inversiones", value: inversiones },
+  ]
+
   return (
     <Card className="shadow-sm mt-4">
       <Card.Body>
