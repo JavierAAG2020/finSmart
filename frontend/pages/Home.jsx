@@ -1,9 +1,15 @@
+import { useState } from "react"
 import CustomNavbar from "../components/layout/Navbar"
 import Footer from "../components/layout/Footer"
+import LoginModal from "../components/auth/LoginModal"
+import RegisterModal from "../components/auth/RegisterModal"
 import "../styles/Home.css"
 import "../styles/main.css"
 
 function Home() {
+  const [showLogin, setShowLogin] = useState(false)
+  const [showRegister, setShowRegister] = useState(false)
+
   return (
     <>
       <CustomNavbar />
@@ -22,9 +28,22 @@ function Home() {
               </p>
 
               <div className="d-flex flex-column flex-sm-row gap-3">
-                <a href="/dashboard" className="btn btn-primary btn-lg">
+                <button
+                  type="button"
+                  className="btn btn-primary btn-lg"
+                  onClick={() => setShowLogin(true)}
+                >
                   Iniciar sesión
-                </a>
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-outline-light btn-lg"
+                  onClick={() => setShowRegister(true)}
+                >
+                  Registrarse
+                </button>
+
                 <a href="/contact" className="btn btn-outline-light btn-lg">
                   Contáctanos
                 </a>
@@ -136,6 +155,9 @@ function Home() {
       </section>
 
       <Footer />
+
+      <LoginModal show={showLogin} handleClose={() => setShowLogin(false)} />
+      <RegisterModal show={showRegister} handleClose={() => setShowRegister(false)} />
     </>
   )
 }

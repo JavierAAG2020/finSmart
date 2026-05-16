@@ -20,19 +20,34 @@ function LoginModal({ show, handleClose }) {
   }, [isAuth])
 
   const handleLogin = () => {
-    // 🔥 Validación: ya autenticado
     if (isAuth) {
       navigate("/dashboard")
       return
     }
 
-    if (user === "admin" && pass === "1234") {
-      login()              // 🔥 usa contexto
-      handleClose()
-      navigate("/dashboard") // 🔥 sin recargar
-    } else {
-      alert("Credenciales incorrectas")
-    }
+    // intenta login en backend
+    fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user, pass })
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}))
+          throw new Error(err.error || 'Credenciales incorrectas')
+        }
+        return res.json()
+      })
+      .then((json) => {
+        const token = json.token
+        const userObj = json.user || null
+        login(token, userObj)
+        handleClose()
+        navigate('/dashboard')
+      })
+      .catch((e) => {
+        alert(e.message || 'Error de autenticación')
+      })
   }
 
   return (
