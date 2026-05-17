@@ -19,7 +19,7 @@ Aplicación web de finanzas personales para gestión de ahorro, gastos e inversi
 Clonar el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/finSmart.git
+git clone https://github.com/JavierAAG2020/finSmart.git
 cd finSmart
 ```
 
