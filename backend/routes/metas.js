@@ -54,4 +54,48 @@ router.post('/', async (req, res) => {
   }
 })
 
+
+// PUT /api/metas/:id — editar meta
+router.put('/:id', async (req, res) => {
+  try {
+    const { nombre, monto_objetivo, fecha_objetivo, prioridad } = req.body
+    if (!nombre || !monto_objetivo) return res.status(400).json({ error: 'nombre y monto_objetivo son obligatorios' })
+
+    const [rows] = await db.query(
+      'SELECT id_meta FROM Metas_Ahorro WHERE id_meta = ? AND id_usuario = ?',
+      [req.params.id, req.user.userId]
+    )
+    if (!rows.length) return res.status(404).json({ error: 'Meta no encontrada' })
+
+    await db.query(
+      `UPDATE Metas_Ahorro
+       SET nombre = ?, monto_objetivo = ?, fecha_objetivo = ?, prioridad = ?
+       WHERE id_meta = ? AND id_usuario = ?`,
+      [nombre, monto_objetivo, fecha_objetivo || null, prioridad || 'MEDIA', req.params.id, req.user.userId]
+    )
+
+    res.json({ mensaje: 'Meta actualizada' })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Error al actualizar meta' })
+  }
+})
+
+// DELETE /api/metas/:id — eliminar meta
+router.delete('/:id', async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      'SELECT id_meta FROM Metas_Ahorro WHERE id_meta = ? AND id_usuario = ?',
+      [req.params.id, req.user.userId]
+    )
+    if (!rows.length) return res.status(404).json({ error: 'Meta no encontrada' })
+
+    await db.query('DELETE FROM Metas_Ahorro WHERE id_meta = ?', [req.params.id])
+    res.json({ mensaje: 'Meta eliminada' })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Error al eliminar meta' })
+  }
+})
+
 module.exports = router
