@@ -4,14 +4,26 @@ import Dashboard from "../pages/Dashboard"
 import Contact from "../pages/Contact"
 import EditarPerfil from "../pages/EditarPerfil"
 import ProtectedRoute from "../components/auth/ProtectedRoute"
+import ServidorContenidos from "../pages/ServidorContenidos"
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Home />} />
+
         <Route path="/contact" element={<Contact />} />
-        <Route path="/perfil" element={<EditarPerfil />} />
+
+        <Route
+          path="/servidor-contenidos"
+          element={<ServidorContenidos />}
+        />
+
+        <Route
+          path="/perfil"
+          element={<EditarPerfil />}
+        />
 
         <Route
           path="/dashboard"
@@ -21,6 +33,7 @@ function AppRouter() {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </BrowserRouter>
   )
