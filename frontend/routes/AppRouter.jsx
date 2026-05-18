@@ -3,6 +3,7 @@ import Home from "../pages/Home"
 import Dashboard from "../pages/Dashboard"
 import Contact from "../pages/Contact"
 import ProtectedRoute from "../components/auth/ProtectedRoute"
+import ServidorContenidos from "../pages/ServidorContenidos"
 
 function AppRouter() {
   return (
@@ -10,6 +11,10 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route
+        path="/servidor-contenidos"
+        element={<ServidorContenidos />}
+      />
 
         <Route
           path="/dashboard"

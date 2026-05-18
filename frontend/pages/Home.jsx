@@ -5,6 +5,7 @@ import LoginModal from "../components/auth/LoginModal"
 import RegisterModal from "../components/auth/RegisterModal"
 import "../styles/Home.css"
 import "../styles/main.css"
+import Carousel from 'react-bootstrap/Carousel';
 
 function Home() {
   const [showLogin, setShowLogin] = useState(false)
@@ -71,40 +72,76 @@ function Home() {
       </main>
 
       <section className="container py-5">
-        <div className="row gy-4">
-          <div className="col-lg-4">
-            <div className="card feature-card h-100 border-0 shadow-sm">
-              <div className="card-body">
-                <h3 className="h5 styled-text">Protección avanzada</h3>
-                <p className="text-muted mb-0">
-                  Tus transacciones y datos están protegidos con protocolos modernos y monitoreo continuo.
-                </p>
-              </div>
-            </div>
-          </div>
 
-          <div className="col-lg-4">
-            <div className="card feature-card h-100 border-0 shadow-sm">
-              <div className="card-body">
-                <h3 className="h5 styled-text">Informe claro</h3>
-                <p className="text-muted mb-0">
-                  Visualiza tus ingresos, gastos y ahorros de forma simple para tomar decisiones seguras.
-                </p>
-              </div>
-            </div>
-          </div>
+              <Carousel
+        pause="hover"
+        interval={3000}
+        indicators={true}
 
-          <div className="col-lg-4">
-            <div className="card feature-card h-100 border-0 shadow-sm">
-              <div className="card-body">
-                <h3 className="h5 styled-text">Soporte confiable</h3>
-                <p className="text-muted mb-0">
-                  Estamos disponibles para ayudarte a entender tu panorama financiero y a optimizar tus resultados.
-                </p>
+        >
+
+          <Carousel.Item>
+
+            <div className="feature-carousel-card">
+
+              <div className="feature-icon">
+                🔒
               </div>
+
+              <h3 className="feature-title">
+                Protección avanzada
+              </h3>
+
+              <p className="feature-description">
+                Tus transacciones y datos están protegidos con protocolos modernos y monitoreo continuo.
+              </p>
+
             </div>
-          </div>
-        </div>
+
+          </Carousel.Item>
+
+          <Carousel.Item>
+
+            <div className="feature-carousel-card">
+
+              <div className="feature-icon">
+                📊
+              </div>
+
+              <h3 className="feature-title">
+                Informe claro
+              </h3>
+
+              <p className="feature-description">
+                Visualiza tus ingresos, gastos y ahorros de forma simple para tomar decisiones seguras.
+              </p>
+
+            </div>
+
+          </Carousel.Item>
+
+          <Carousel.Item>
+
+            <div className="feature-carousel-card">
+
+              <div className="feature-icon">
+                🤝
+              </div>
+
+              <h3 className="feature-title">
+                Soporte confiable
+              </h3>
+
+              <p className="feature-description">
+                Estamos disponibles para ayudarte a entender tu panorama financiero y optimizar tus resultados.
+              </p>
+
+            </div>
+
+          </Carousel.Item>
+
+        </Carousel>
+
       </section>
 
       <section className="container security-section py-5 mb-5">
@@ -151,6 +188,16 @@ function Home() {
               ></iframe>
             </div>
           </div>
+        </div>
+        <div className="servidor-home">
+          <h2>Servidor de Contenidos</h2>
+
+          <a
+            href="/servidor-contenidos"
+            className="link-servidor"
+          >
+            Ver imágenes turísticas de Bucaramanga
+          </a>
         </div>
       </section>
 
