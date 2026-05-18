@@ -10,39 +10,23 @@ function Dashboard() {
   const [gastos, setGastos] = useState(0);
   const [inversiones, setInversiones] = useState(0);
 
-  // FUNCIONES
-  const agregarIngreso = (monto) => {
-    monto = Number(monto);
-    setDineroTotal(prev => prev + monto);
-  };
-
-  const registrarGasto = (monto) => {
-    monto = Number(monto);
-    setGastos(prev => prev + monto);
-    setDineroTotal(prev => prev - monto);
-  };
-
-  const invertir = (monto) => {
-    monto = Number(monto);
-    setInversiones(prev => prev + monto);
-    setDineroTotal(prev => prev - monto);
+  const handleDatosActualizados = ({ totalIngresos, totalGastos, totalInversiones }) => {
+    setDineroTotal(totalIngresos - totalGastos - totalInversiones);
+    setGastos(totalGastos);
+    setInversiones(totalInversiones);
   };
 
   return (
     <DashboardLayout>
-      <SummaryCards 
+      <SummaryCards
         dineroTotal={dineroTotal}
         gastos={gastos}
         inversiones={inversiones}
       />
-
-      <ActionsPanel 
-        agregarIngreso={agregarIngreso}
-        registrarGasto={registrarGasto}
-        invertir={invertir}
+      <ActionsPanel
+        onDatosActualizados={handleDatosActualizados}
       />
-
-      <ExpensePieChart 
+      <ExpensePieChart
         dineroTotal={dineroTotal}
         gastos={gastos}
         inversiones={inversiones}
