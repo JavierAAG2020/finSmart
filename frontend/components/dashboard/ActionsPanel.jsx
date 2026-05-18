@@ -46,11 +46,101 @@ function ActionsPanel({ agregarIngreso, registrarGasto, invertir }) {
 
   const [listaInversiones, setListaInversiones] = useState([])
 
+  // AI SUGGESTIONS
+  const [showAISuggestions, setShowAISuggestions] = useState(false)
+  const [aiLoading, setAiLoading] = useState(false)
+  const [aiSuggestions, setAiSuggestions] = useState('')
+  const [aiError, setAiError] = useState(false)
+
   // Formatear número
   const formatearNumero = (numero) => {
     if (!numero) return ""
     return new Intl.NumberFormat("es-CO").format(numero)
   }
+
+  // Minimal markdown-like formatter for AI text -> HTML
+  const escapeHtml = (unsafe) => {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;")
+  }
+
+  const formatAIResponse = (responseText) => {
+  if (!responseText) return ""
+
+  try {
+    // Limpia posibles bloques ```json ... ```
+    const cleaned = responseText
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim()
+
+    const data = JSON.parse(cleaned)
+
+    let html = `<div class="ai-response">`
+
+    // Título
+    if (data.titulo) {
+      html += `<h3>${escapeHtml(data.titulo)}</h3>`
+    }
+
+    // Prioridad o riesgo
+    if (data.prioridad || data.riesgo) {
+      html += `
+        <p>
+          <strong>${data.prioridad ? "Prioridad" : "Riesgo"}:</strong>
+          ${escapeHtml(data.prioridad || data.riesgo)}
+        </p>
+      `
+    }
+
+    // Mensaje principal
+    if (data.mensaje) {
+      html += `<p>${escapeHtml(data.mensaje)}</p>`
+    }
+
+    // Recomendaciones
+    if (
+      data.recomendaciones &&
+      Array.isArray(data.recomendaciones)
+    ) {
+      html += `<h4>Recomendaciones</h4>`
+      html += `<ul>`
+
+      data.recomendaciones.forEach((rec) => {
+        html += `<li>${escapeHtml(rec)}</li>`
+      })
+
+      html += `</ul>`
+    }
+
+    // Ahorro sugerido
+    if (data.ahorroSugerido) {
+      html += `
+        <p>
+          <strong>Ahorro sugerido:</strong>
+          ${escapeHtml(String(data.ahorroSugerido))}
+        </p>
+      `
+    }
+
+    html += `</div>`
+
+    return html
+
+  } catch (error) {
+    console.error("Error parseando JSON IA:", error)
+
+    // Fallback: mostrar texto normal
+    return `<p>${escapeHtml(responseText)}</p>`
+  }
+}
+
+  // Alias kept for backward compatibility in modal usage
+  const formatAIText = (text) => formatAIResponse(text)
 
   // INGRESO
   const handleChangeIngreso = (e) => {
@@ -206,6 +296,37 @@ function ActionsPanel({ agregarIngreso, registrarGasto, invertir }) {
 
             <Button variant="info" onClick={() => setShowInvertir(true)}>
               Invertir
+            </Button>
+            <Button variant="secondary" onClick={async () => {
+              setShowAISuggestions(true)
+              setAiError(false)
+              // lazy load suggestions when opening
+              if (!aiSuggestions) {
+                setAiLoading(true)
+                try {
+                  const resp = await fetch('/api/ai/suggestions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ listaGastos, listaIngresos, listaMetas, listaInversiones })
+                  })
+                  const data = await resp.json()
+                  if (resp.ok) {
+                    // prefer structured suggestions object when available
+                    setAiSuggestions(data.suggestions || data)
+                    setAiError(false)
+                  } else {
+                    setAiSuggestions(data.error || JSON.stringify(data))
+                    setAiError(true)
+                  }
+                } catch (err) {
+                  setAiSuggestions('Error al solicitar sugerencias: ' + err.message)
+                  setAiError(true)
+                } finally {
+                  setAiLoading(false)
+                }
+              }
+            }}>
+              Sugerencias IA
             </Button>
           </div>
 
@@ -445,6 +566,114 @@ function ActionsPanel({ agregarIngreso, registrarGasto, invertir }) {
           </Button>
           <Button variant="info" onClick={guardarInversion}>
             Guardar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* MODAL SUGERENCIAS IA */}
+      <Modal show={showAISuggestions} onHide={() => setShowAISuggestions(false)} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Sugerencias de la IA</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {aiLoading ? (
+            <div>Cargando sugerencias...</div>
+          ) : (
+            (() => {
+              if (!aiSuggestions) return <div>No hay sugerencias todavía.</div>
+
+              // If backend returned a plain string, render as formatted HTML
+              if (typeof aiSuggestions === 'string') {
+                return <div dangerouslySetInnerHTML={{ __html: formatAIText(aiSuggestions) }} />
+              }
+
+              // Expecting structured object: { resumen, recomendaciones: [ { titulo, accion: [], prioridad, impacto } ] }
+              const s = aiSuggestions
+              return (
+                <div>
+                  {s.resumen && <p><strong>Resumen:</strong> {s.resumen}</p>}
+                  {<div>
+
+  {s.titulo && (
+    <h4 className="mb-3">
+      <strong>{s.titulo}</strong>
+    </h4>
+  )}
+
+  {s.resumen && (
+    <p>
+      <strong>Resumen:</strong> {s.resumen}
+    </p>
+  )}
+
+  {s.mensaje && (
+    <p>{s.mensaje}</p>
+  )}
+
+  {s.prioridad && (
+    <p>
+      <strong>Prioridad:</strong> {s.prioridad}
+    </p>
+  )}
+
+  {s.impacto && (
+    <p>
+      <strong>Impacto:</strong> {s.impacto}
+    </p>
+  )}
+
+  {Array.isArray(s.recomendaciones) &&
+    s.recomendaciones.length > 0 && (
+      <div className="mt-3">
+
+        <h5>Recomendaciones</h5>
+
+        <ul>
+          {s.recomendaciones.map((rec, idx) => {
+
+            // Si es string simple
+            if (typeof rec === 'string') {
+              return <li key={idx}>{rec}</li>
+            }
+
+            // Si es objeto complejo
+            return (
+              <li key={idx} className="mb-2">
+
+                {rec.titulo && (
+                  <strong>{rec.titulo}</strong>
+                )}
+
+                {Array.isArray(rec.accion) && (
+                  <ul>
+                    {rec.accion.map((a, i) => (
+                      <li key={i}>{a}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {rec.prioridad && (
+                  <div>
+                    <strong>Prioridad:</strong> {rec.prioridad}
+                  </div>
+                )}
+
+              </li>
+            )
+          })}
+        </ul>
+
+      </div>
+  )}
+
+</div>}
+                </div>
+              )
+            })()
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAISuggestions(false)}>
+            Cerrar
           </Button>
         </Modal.Footer>
       </Modal>
