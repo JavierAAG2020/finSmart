@@ -33,12 +33,17 @@ export const AuthProvider = ({ children }) => {
     setUser(null)
   }
 
+  const updateUser = (newUser) => {
+  localStorage.setItem('user', JSON.stringify(newUser))
+  setUser(newUser)
+}
+
   const isAuth = !!token
 
   const authHeader = () => ({ Authorization: `Bearer ${token}` })
 
   return (
-    <AuthContext.Provider value={{ isAuth, token, user, login, logout, authHeader }}>
+    <AuthContext.Provider value={{ isAuth, token, user, login, logout, authHeader, updateUser }}>
       {children}
     </AuthContext.Provider>
   )

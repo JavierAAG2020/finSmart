@@ -38,6 +38,10 @@ function Sidebar() {
         >
           Cerrar sesión
         </Nav.Link>
+
+        <Nav.Link as={Link} to="/perfil" className="text-white">
+          Editar perfil
+        </Nav.Link>
       </Nav>
     </div>
   )

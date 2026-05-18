@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "../pages/Home"
 import Dashboard from "../pages/Dashboard"
 import Contact from "../pages/Contact"
+import EditarPerfil from "../pages/EditarPerfil"
 import ProtectedRoute from "../components/auth/ProtectedRoute"
 
 function AppRouter() {
@@ -10,6 +11,7 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/perfil" element={<EditarPerfil />} />
 
         <Route
           path="/dashboard"
