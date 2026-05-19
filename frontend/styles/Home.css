@@ -1,3 +1,4 @@
+/* Estilos principales del Home y sección principal de bienvenida */
 .home-hero {
   min-height: calc(100vh - 70px);
   display: flex;
@@ -18,6 +19,7 @@
   color: rgba(248, 251, 255, 0.82);
 }
 
+/* Tarjetas y efectos visuales reutilizables */
 .home-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -34,6 +36,7 @@
   box-shadow: 0 25px 45px rgba(15, 44, 85, 0.16);
 }
 
+/* Sección de seguridad financiera */
 .security-section {
   background: #f8fbff;
   border-radius: 2rem;
@@ -50,7 +53,7 @@
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-
+/* Animaciones de los modales */
 .modal.fade .modal-dialog {
   transition: transform 0.5s ease-out;
 }
@@ -59,6 +62,7 @@
   transition: opacity 0.5s ease-out;
 }
 
+/* Diseño responsive para dispositivos móviles */
 @media (max-width: 991px) {
   .home-hero {
     padding-top: 80px;
@@ -76,6 +80,7 @@
   }
 }
 
+/* Estilos del carrusel interactivo del Home */
 .feature-carousel-card {
   background: white;
   border-radius: 25px;
@@ -112,6 +117,7 @@
   line-height: 1.8;
 }
 
+/* Personalización de los indicadores del carrusel */
 .carousel-indicators [data-bs-target] {
   background-color: #2563eb;
 }
