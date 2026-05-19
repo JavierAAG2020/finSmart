@@ -10,8 +10,9 @@ Pasos:
 DB_USER=un_usr
 DB_PASS=una_clave
 DB_NAME=finsmart
+GOOGLE_AI_API_KEY="KEY_ESTA_EN_EL_DOCUMENTO_PDF"
 
-3. Ajustar que las credenciales coincidan en XAMPP
+4. Ajustar que las credenciales coincidan en XAMPP
     1. Abrir XAMPP
     2. Ejecutar MySQL y Apache (verificar que están en verde)
     3. Acceder a http://localhost/phpmyadmin/
@@ -23,7 +24,7 @@ DB_NAME=finsmart
     7. Marcar los privilegios globales 
     8. Darle en continuar
 
-4. Instala dependencias:
+5. Instala dependencias:
 
 ```bash
 cd backend
