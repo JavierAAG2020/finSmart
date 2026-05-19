@@ -41,6 +41,11 @@ npm run init-db
 
 7. Inicia el servidor:
 
+
+```bash
+npx nodemon index.js
+```
+
 ```bash
 npm run dev
 ```
