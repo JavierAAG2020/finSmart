@@ -16,6 +16,7 @@ function CustomNavbar() {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/contact">Contacto</Nav.Link>
             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+            <Nav.Link as={Link} to="/files">Archivos</Nav.Link>
           </Nav>
 
           <Button onClick={() => setShow(true)}>Login</Button>

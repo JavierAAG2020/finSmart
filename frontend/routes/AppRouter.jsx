@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard"
 import Contact from "../pages/Contact"
 import EditarPerfil from "../pages/EditarPerfil"
 import ProtectedRoute from "../components/auth/ProtectedRoute"
+import Files from "../pages/Files"
 import ServidorContenidos from "../pages/ServidorContenidos"
 
 // Configuración principal de rutas de la aplicación
@@ -17,6 +18,7 @@ function AppRouter() {
 
         {/* Ruta de contacto */}
         <Route path="/contact" element={<Contact />} />
+        <Route path="/files" element={<Files />} />
 
         {/* Ruta del servidor de contenidos turísticos */}
         <Route
