@@ -14,7 +14,6 @@ async function callGeminiV1beta(prompt, opts = {}) {
   const body = {
     contents: [ { parts: [ { text: prompt } ] } ]
   }
-  console.log('GEMINI REQUEST URL:', url)
   try {
     console.log('GEMINI REQUEST BODY:', JSON.stringify(body, null, 2))
     const resp = await axios.post(url, body)
@@ -43,7 +42,7 @@ router.post('/suggestions', async (req, res) => {
 
     prompt += 'Gastos:\n'
     if (Array.isArray(listaGastos) && listaGastos.length) {
-      listaGastos.slice(-10).forEach(g => {
+      listaGastos.slice(-3).forEach(g => {
         prompt += `- ${g.categoria || 'sin-cat'}: $${g.monto || g.monto == 0 ? g.monto : ''} (${g.descripcion || ''})\n`
       })
     } else {
@@ -52,7 +51,7 @@ router.post('/suggestions', async (req, res) => {
 
     prompt += '\nIngresos:\n'
     if (Array.isArray(listaIngresos) && listaIngresos.length) {
-      listaIngresos.slice(-10).forEach(i => {
+      listaIngresos.slice(-3).forEach(i => {
         prompt += `- ${i.fuente || 'sin-fuente'}: $${i.monto || ''} (${i.descripcion || ''})\n`
       })
     } else {
@@ -117,178 +116,6 @@ router.post('/suggestions', async (req, res) => {
         }
       }
       // Si no es JSON válido, aplicar heurística para construir el objeto requerido
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      // Extra large whitespace block intentionally removed
-      
-      
-      
-      
       
       // Extraer recomendaciones numeradas o en viñetas
       const items = []
