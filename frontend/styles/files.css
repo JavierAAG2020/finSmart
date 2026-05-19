@@ -1,0 +1,371 @@
+/* ===========================================
+   ESTILOS DE LA PÁGINA DE ARCHIVOS (FILES)
+   =========================================== */
+
+/* ----------
+   Contenedor principal de la página
+   ---------- */
+/* Define el fondo con gradiente radial y lineal para dar el estilo oscuro de FinSmart */
+.files-page {
+    min-height: 100vh;
+    /* Gradiente radial en la esquina superior izquierda con color azul suave */
+    background:
+      radial-gradient(circle at top left, rgba(32, 128, 255, 0.18), transparent 30%),
+      /* Gradiente lineal vertical: de azul muy oscuro a azul medio */
+      linear-gradient(180deg, #07122c 0%, #101f45 48%, #0b1631 100%);
+    position: relative;
+    overflow: hidden; /* Evita que los elementos decorativos se salgan del contenedor */
+}
+
+/* ----------
+   Efectos de brillo/glow decorativos
+   ---------- */
+/* Estilos base para los efectos de brillo (círculos difuminados) */
+.files-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none; /* Permite hacer click a través del glow */
+    filter: blur(70px); /* Efecto de desenfoque gaussiano */
+}
+
+/* Glow posicionado en la esquina superior izquierda */
+.files-glow-left {
+    width: 350px;
+    height: 350px;
+    background: rgba(32, 128, 255, 0.18);
+    top: 8%;
+    left: -8%;
+}
+
+/* Glow posicionado en la esquina inferior derecha */
+.files-glow-right {
+    width: 320px;
+    height: 320px;
+    background: rgba(87, 126, 255, 0.14);
+    bottom: 5%;
+    right: -6%;
+}
+
+/* ----------
+   Sección principal (hero) de la página
+   ---------- */
+/* Padding superior y posición relativa para estar por encima de los glows */
+.files-hero {
+    padding-top: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ----------
+   Badge/etiqueta decorativa
+   ---------- */
+/* Estilo para las etiquetas pequeñas como "Gestión de archivos" o contadores */
+.files-badge {
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    border-radius: 999px; /* Border radius muy grande para forma de píldora */
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #d7e7ff;
+    backdrop-filter: blur(10px); /* Efecto de vidrio esmerilado */
+    font-size: 0.9rem;
+}
+
+/* ----------
+   Título principal de la página
+   ---------- */
+/* Título grande con tamaño responsivo usando clamp() */
+.files-title {
+    font-size: clamp(2.8rem, 5vw, 4.3rem);
+    font-weight: 800; /* Extra bold */
+    color: white;
+    letter-spacing: -0.03em; /* Espaciado negativo entre letras */
+}
+
+/* ----------
+   Subtítulo de la página
+   ---------- */
+/* Texto descriptivo con ancho máximo para mejor lectura */
+.files-subtitle {
+    max-width: 700px;
+    color: rgba(248, 251, 255, 0.75);
+    font-size: 1.05rem;
+}
+
+/* ----------
+   Tarjetas de contenido (glassmorphism)
+   ---------- */
+/* Tarjetas con efecto de vidrio esmerilado (glassmorphism) */
+.files-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(16px); /* Mayor blur para las tarjetas */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+/* ----------
+   Icono pequeño para mostrar junto a elementos
+   ---------- */
+/* Contenedor de icono con forma redondeada y color azul suave */
+.upload-mini-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(32, 128, 255, 0.16);
+    color: #dce9ff;
+}
+
+/* ----------
+   Zona de arrastrar/soltar archivos
+   ---------- */
+/* Área punteada donde el usuario puede soltar archivos o hacer click para seleccionar */
+.upload-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.14);
+    border-radius: 1.5rem;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease; /* Transición suave para todos los cambios */
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Efecto hover cuando el mouse está sobre la zona de upload */
+.upload-zone:hover {
+    transform: translateY(-2px); /* Levanta ligeramente la tarjeta */
+    border-color: rgba(122, 162, 255, 0.45);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ----------
+   Icono dentro de la zona de upload
+   ---------- */
+/* Icono grande y redondeado dentro de la zona de arrastrar archivos */
+.upload-zone-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 1.5rem;
+    background: rgba(32, 128, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* ----------
+   Texto instructivo en la zona de upload
+   ---------- */
+/* Estilo para los textos de ayuda dentro de la zona de upload */
+.upload-text {
+    color: rgba(248, 251, 255, 0.6);
+}
+
+/* ----------
+   Lista de archivos seleccionados
+   ---------- */
+/* Contenedor vertical para mostrar los archivos que el usuario ha seleccionado */
+.selected-files {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ----------
+   Item individual de archivo seleccionado
+   ---------- */
+/* Cada archivo mostrado en la lista de selección */
+.selected-file-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+}
+
+/* ----------
+   Botón de subir archivos
+   ---------- */
+/* Botón principal para ejecutar la subida de archivos al servidor */
+.upload-btn {
+    border: none;
+    border-radius: 1rem;
+    padding: 0.95rem;
+    background: linear-gradient(135deg, #3f7cff, #5f8dff); /* Gradiente azul */
+    color: white;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+/* Efecto hover del botón de upload */
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(63, 124, 255, 0.35); /* Sombra azul brillante */
+}
+
+/* ----------
+   Mensajes de alerta (éxito/error)
+   ---------- */
+/* Estilo para mostrar mensajes al usuario después de subir archivos */
+.upload-alert {
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgba(63, 124, 255, 0.14);
+    border: 1px solid rgba(63, 124, 255, 0.2);
+    color: #dbe8ff;
+}
+
+/* ----------
+   Contador numérico de archivos
+   ---------- */
+/* Número circular que muestra el índice/posición del archivo */
+.files-counter {
+    width: 52px;
+    height: 52px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(32, 128, 255, 0.16);
+    color: white;
+    font-weight: 700;
+}
+
+/* ----------
+   Lista de archivos disponibles (descargables)
+   ---------- */
+/* Contenedor de la lista de archivos subidos que se pueden descargar */
+.files-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ----------
+   Item individual de archivo en la lista de descargas
+   ---------- */
+/* Cada archivo mostrado en la lista de archivos disponibles para descargar */
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.25s ease;
+}
+
+/* Efecto hover cuando el mouse está sobre un archivo */
+.file-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ----------
+   Icono de tipo de archivo
+   ---------- */
+/* Contenedor del icono que representa el tipo de archivo (PDF, imagen, etc.) */
+.file-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 1rem;
+    background: rgba(32, 128, 255, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+/* ----------
+   Nombre del archivo
+   ---------- */
+/* Estilo para el nombre del archivo mostrado en la lista */
+.file-name {
+    color: white;
+    font-weight: 600;
+}
+
+/* ----------
+   Botón de descarga de archivo
+   ---------- */
+/* Enlace/botón para descargar cada archivo individual */
+.download-btn {
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.9rem;
+    text-decoration: none; /* Quitar subrayado del enlace */
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: white;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    white-space: nowrap; /* Evitar que el texto se rompa en varias líneas */
+}
+
+/* Efecto hover del botón de descarga */
+.download-btn:hover {
+    background: rgba(63, 124, 255, 0.25);
+    color: white;
+}
+
+/* ----------
+   Estado vacío (cuando no hay archivos)
+   ---------- */
+/* Contenedor para mostrar cuando no hay archivos disponibles o están cargando */
+.empty-state {
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* ----------
+   Icono del estado vacío
+   ---------- */
+/* Icono grande que se muestra cuando no hay archivos */
+.empty-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ----------
+   Responsive: Estilos para pantallas medianas y pequeñas
+   ---------- */
+@media (max-width: 991px) {
+    /* Reducir tamaño del título en tablets y móviles */
+    .files-title {
+      font-size: 2.8rem;
+    }
+  
+    /* En móviles, mostrar los items de archivo en columna */
+    .file-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    /* El botón de descarga ocupa todo el ancho en móviles */
+    .download-btn {
+      width: 100%;
+      text-align: center;
+    }
+}

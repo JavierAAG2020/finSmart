@@ -1,17 +1,33 @@
+/* ===========================================
+   ESTILOS DE LA PÁGINA DE CONTACTO (TEAM)
+   =========================================== */
+
+/* ----------
+   Contenedor principal de la página
+   ---------- */
 .contact-page {
   min-height: 100vh;
+  /* Gradiente lineal de azul muy oscuro a azul medio */
   background: linear-gradient(180deg, #07122c 0%, #101f45 48%, #0b1631 100%) !important;
+  /* Padding superior para dejar espacio a la barra de navegación */
   padding-top: 6rem;
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
+/* ----------
+   Contenedor del contenido
+   ---------- */
 .contact-content {
   flex-grow: 1;
 }
 
+/* ----------
+   Título principal de la página
+   ---------- */
 .contact-title {
+  /* Gradiente de blanco a gris para efecto metálico en el texto */
   background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #ffffff 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -22,50 +38,67 @@
   letter-spacing: -0.02em;
 }
 
+/* ----------
+   Efectos de brillo/glow decorativos
+   ---------- */
 .contact-glow {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
 }
 
+/* Glow posicionado en la parte superior izquierda */
 .contact-glow-left {
   top: 10%;
   left: -5%;
   width: 400px;
   height: 400px;
+  /* Gradiente radial desde azul hasta transparente */
   background: radial-gradient(circle, rgba(32, 128, 255, 0.15) 0%, transparent 70%);
   filter: blur(60px);
 }
 
+/* Glow posicionado en la parte inferior derecha */
 .contact-glow-right {
   bottom: 20%;
   right: -5%;
   width: 500px;
   height: 500px;
+  /* Gradiente radial desde azul-violeta hasta transparente */
   background: radial-gradient(circle, rgba(102, 126, 234, 0.12) 0%, transparent 70%);
   filter: blur(80px);
 }
 
+/* Glow posicionado en el centro de la página */
 .contact-glow-center {
   top: 50%;
   left: 30%;
   width: 300px;
   height: 300px;
+  /* Gradiente radial azul suave */
   background: radial-gradient(circle, rgba(68, 146, 255, 0.1) 0%, transparent 70%);
   filter: blur(50px);
 }
 
+/* ----------
+   Contenedor del efecto flip (volteo de tarjeta)
+   ---------- */
 .contact-flip-wrapper {
+  /* Profundidad para la transformación 3D */
   perspective: 1000px;
   height: 300px;
   cursor: pointer;
   position: relative;
 }
 
+/* ----------
+   Contenedor interno que realiza la rotación
+   ---------- */
 .contact-flip-inner {
   position: relative;
   width: 100%;
   height: 100%;
+  /* Animación suave de 0.6 segundos */
   transition: transform 0.6s;
   transform-style: preserve-3d;
   transform: rotateY(0deg);
@@ -73,10 +106,14 @@
   transform-origin: center center;
 }
 
+/* Clase aplicada cuando la tarjeta está volteada */
 .contact-flip-inner.is-flipped {
   transform: rotateY(180deg);
 }
 
+/* ----------
+   Estilos de las tarjetas (front y back)
+   ---------- */
 .contact-card {
   position: absolute !important;
   top: 0;
@@ -85,39 +122,57 @@
   height: 100% !important;
   margin: 0 !important;
   border-radius: 16px !important;
+  /* Efecto de vidrio esmerilado (glassmorphism) */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   color: white !important;
+  /* Ocultar la cara trasera cuando no está volteada */
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  -webkit-backdrop-visibility: hidden;
   will-change: transform;
 }
 
+/* ----------
+   Cara frontal de la tarjeta (contacto)
+   ---------- */
 .contact-card-front {
   background: rgba(255, 255, 255, 0.08) !important;
   border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  /* Sombra con glow azul suave */
   box-shadow: 0 0 20px rgba(32, 128, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.2);
+  /* Animación de entrada: aparece deslizándose desde abajo */
   animation: slideInFromBottom 0.6s ease-out forwards;
   opacity: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Efecto hover sobre la tarjeta frontal */
 .contact-card-front:hover {
   box-shadow: 0 0 35px rgba(32, 128, 255, 0.35), 0 15px 50px rgba(0, 0, 0, 0.4) !important;
   transform: translateY(-6px) scale(1.01);
 }
 
+/* ----------
+   Cara trasera de la tarjeta (información personal)
+   ---------- */
 .contact-card-back {
   background: rgba(255, 255, 255, 0.12) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  /* Rotada 180 grados inicialmente para estar oculta */
   transform: rotateY(180deg) translateZ(0);
   box-shadow: 0 0 20px rgba(32, 128, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
+/* ----------
+   Body de la tarjeta
+   ---------- */
 .contact-card-body {
   padding-top: 40px;
 }
 
+/* ----------
+   Título del nombre del integrante
+   ---------- */
 .pointer-title {
   cursor: pointer;
   transition: color 0.2s ease;
@@ -127,11 +182,17 @@
   color: #667eea;
 }
 
+/* ----------
+   Rol del integrante
+   ---------- */
 .contact-role {
   color: rgba(248, 251, 255, 0.7);
   margin-bottom: 5px;
 }
 
+/* ----------
+   Iconos de redes sociales
+   ---------- */
 .icon-link {
   transition: transform 0.2s, filter 0.2s;
 }
@@ -141,6 +202,9 @@
   filter: brightness(1.3);
 }
 
+/* ----------
+   Links de texto para redes sociales
+   ---------- */
 .social-text-link {
   color: rgba(248, 251, 255, 0.7);
   text-decoration: none;
@@ -155,15 +219,24 @@
   color: #f8fbff;
 }
 
+/* ----------
+   Correo electrónico
+   ---------- */
 .contact-mail {
   color: rgba(248, 251, 255, 0.7);
 }
 
+/* ----------
+   Texto instructivo para voltear
+   ---------- */
 .flip-helper-text {
   color: rgba(248, 251, 255, 0.15);
   font-size: 0.85rem;
 }
 
+/* ----------
+   Imagen de perfil del integrante (cara trasera)
+   ---------- */
 .contact-profile-image {
   width: 140px;
   height: 140px;
@@ -173,11 +246,17 @@
   margin-bottom: 20px;
 }
 
+/* ----------
+   Información personal (cara trasera)
+   ---------- */
 .contact-personal-info {
   color: rgba(248, 251, 255, 0.9);
   font-size: 1rem;
 }
 
+/* ----------
+   Animaciones
+   ---------- */
 @keyframes slideInFromBottom {
   from {
     transform: translateY(50px);
