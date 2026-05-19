@@ -25,7 +25,12 @@ function EditarPerfil() {
   const [passwordNueva, setPasswordNueva] = useState("")
   const [passwordConfirm, setPasswordConfirm] = useState("")
 
-  const [fotoPreview, setFotoPreview] = useState(user?.foto_perfil || null)
+  const resolverUrl = (ruta) => {
+    if (!ruta) return null
+    if (ruta.startsWith('blob:') || ruta.startsWith('http')) return ruta
+    return `http://localhost:4000${ruta}`
+  }
+  const [fotoPreview, setFotoPreview] = useState(resolverUrl(user?.foto_perfil))
   const [fotoArchivo, setFotoArchivo] = useState(null)
   const inputFotoRef = useRef()
 
@@ -45,31 +50,32 @@ function EditarPerfil() {
     setFotoPreview(URL.createObjectURL(archivo))
   }
 
-  const subirFoto = async () => {
-    if (!fotoArchivo) return setError("Selecciona una imagen primero")
-    limpiarMensajes()
-    setCargandoFoto(true)
-    try {
-      const formData = new FormData()
-      formData.append('foto', fotoArchivo)
+const subirFoto = async () => {
+  if (!fotoArchivo) return setError("Selecciona una imagen primero")
+  limpiarMensajes()
+  setCargandoFoto(true)
+  try {
+    const formData = new FormData()
+    formData.append('foto', fotoArchivo)
 
-      const res = await fetch('/api/perfil/foto', {
-        method: 'POST',
-        headers: { ...authHeader() }, // sin Content-Type, multer lo maneja
-        body: formData
-      })
-      const data = await res.json()
-      if (!res.ok) return setError(data.error || "Error al subir foto")
+    const res = await fetch('/api/perfil/foto', {
+      method: 'POST',
+      headers: { ...authHeader() },
+      body: formData
+    })
+    const data = await res.json()
+    if (!res.ok) return setError(data.error || "Error al subir foto")
 
-      updateUser({ ...user, foto_perfil: data.foto_perfil })
-      setFotoArchivo(null)
-      setExito("Foto de perfil actualizada")
-    } catch {
-      setError("Error de conexión")
-    } finally {
-      setCargandoFoto(false)
-    }
+    updateUser({ ...user, foto_perfil: data.foto_perfil })  // ← aquí
+    setFotoPreview(resolverUrl(data.foto_perfil))            // ← y aquí
+    setFotoArchivo(null)
+    setExito("Foto de perfil actualizada")
+  } catch {
+    setError("Error de conexión")
+  } finally {
+    setCargandoFoto(false)
   }
+}
 
   // ── Datos personales ─────────────────────────────────────────────────────
   const guardarDatos = async () => {
