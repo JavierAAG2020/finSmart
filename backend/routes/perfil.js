@@ -10,7 +10,7 @@ router.use(authenticate)
 
 // ── Configuración multer ──────────────────────────────────────────────────
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
+  destination: (req, file, cb) => cb(null, 'public/uploadspfp/'),
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname)
     cb(null, `perfil_${req.user.userId}_${Date.now()}${ext}`)

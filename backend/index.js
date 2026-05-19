@@ -25,7 +25,7 @@ app.use('/api/registros',   registrosRouter)
 app.use('/api/metas',       metasRouter)
 app.use('/api/inversiones', inversionesRouter)
 app.use('/api/perfil', perfilRouter)
-app.use('/uploads', express.static('uploads'))
+app.use('/uploads', express.static('public/uploadspfp'))
 
 const PORT = process.env.PORT || 4000
 app.listen(PORT, () => console.log(`API server listening on http://localhost:${PORT}`))
