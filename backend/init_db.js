@@ -34,10 +34,10 @@ async function run() {
       const hash = await bcrypt.hash('1234', 10)
       const id = uuidv4()
       await connection.query(`INSERT INTO Usuarios (id_usuario, nombre, correo, password_hash) VALUES (?, ?, ?, ?)`, [id, 'admin', 'admin@local', hash])
-      const hash = await bcrypt.hash('una_clave', 10)
-      const id = uuidv4()
-      await connection.query(`INSERT INTO Usuarios (id_usuario, nombre, correo, password_hash) VALUES (?, ?, ?, ?)`, [id, 'un_usr', 'un_usr@local', hash])
-      console.log('Usuario admin creado: admin@local / 1234')
+      const hash2 = await bcrypt.hash('una_clave', 10)
+      const id2 = uuidv4()
+      await connection.query(`INSERT INTO Usuarios (id_usuario, nombre, correo, password_hash) VALUES (?, ?, ?, ?)`, [id2, 'un_usr', 'un_usr@local', hash2])
+      console.log('Usuario admin creado: un_usr@local / una_clave')
     }
 
     console.log('SQL ejecutado correctamente.')

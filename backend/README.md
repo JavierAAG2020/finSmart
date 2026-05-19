@@ -36,7 +36,7 @@ npm install multer
 5. Inicializa la base de datos (ejecuta el SQL en `sql_finsmart.txt` y crea un admin):
 
 ```bash
-npm run init-db
+npm run init_db
 ```
 
 6. (Opcional) Ver la base de datos accediendo a http://localhost/phpmyadmin/ y seleccionar la base de datos finsmart
