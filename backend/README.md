@@ -28,6 +28,8 @@ DB_NAME=finsmart
 ```bash
 cd backend
 npm install
+
+npm install multer
 ```
 
 5. Inicializa la base de datos (ejecuta el SQL en `sql_finsmart.txt` y crea un admin):
