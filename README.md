@@ -32,7 +32,7 @@ npm install react-icons
 
 ---
 
-## ▶️ Ejecución
+## ▶️ Ejecución (Frontend)
 
 ```bash
 npm run dev
@@ -46,11 +46,14 @@ http://localhost:5173
 
 ---
 
-## 🔐 Acceso de prueba
+## 🔐 Accesos de prueba
 
 ```
 Usuario: admin
 Password: 1234
+
+Usuario: un_usr
+Password: una_clave
 ```
 
 ---
@@ -62,6 +65,7 @@ Password: 1234
 * Gráfica de distribución (ahorro, gastos, inversión)
 * Registro de acciones básicas
 * Logout funcional
+* Implementación de IA para sugerencias financieras (1 sugerencia por sesión)
 
 ---
 
@@ -69,11 +73,3 @@ Password: 1234
 
 * `node_modules` no está incluido
 * Es obligatorio ejecutar `npm install` antes de iniciar
-
----
-
-## 🚧 Próximas mejoras
-
-* Persistencia en base de datos
-* Recomendaciones con IA
-* Carrusel y acordeon
