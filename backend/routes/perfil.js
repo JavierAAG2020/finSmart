@@ -8,7 +8,7 @@ const authenticate = require('../middleware/authenticate')
 
 router.use(authenticate)
 
-// ── Configuración multer ──────────────────────────────────────────────────
+// Configuración multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, 'public/uploadspfp/'),
   filename: (req, file, cb) => {

@@ -5,7 +5,7 @@ const axios = require('axios')
 const pool = require('../db')
 const { v4: uuidv4 } = require('uuid')
 
-// Helper to call v1beta generateContent like the curl example
+
 async function callGeminiV1beta(prompt, opts = {}) {
   const apiKey = process.env.GOOGLE_AI_API_KEY
   if (!apiKey) throw new Error('Missing GOOGLE_AI_API_KEY in environment')
@@ -33,8 +33,7 @@ router.post('/suggestions', async (req, res) => {
   try {
     const { listaGastos, listaIngresos, listaMetas, listaInversiones } = req.body || {}
 
-    // Build a concise prompt describing the user's recent financial data
-    // Enforce exact JSON schema required by frontend: titulo, resumen, prioridad, impacto, recomendaciones (array of strings)
+
     let prompt = 'Eres un asistente financiero que responde SOLO con JSON válido (sin texto adicional). Usa exactamente este formato de salida en español:\n' +
       '{"titulo":"","resumen":"","prioridad":"","impacto":"","recomendaciones":["texto 1","texto 2"]}\n' +
       'Notas:\n- Devuelve siempre las 5 claves: titulo, resumen, prioridad, impacto, recomendaciones. Si no aplican valores, usa cadena vacía o array vacío.\n- "recomendaciones" debe ser un array de strings (2-5 elementos), cada string máximo 120 caracteres.\n- No añadas explicaciones, ni markdown, ni comentarios, ni código: SOLO el JSON.\n- Responde en español.\n\n' +
